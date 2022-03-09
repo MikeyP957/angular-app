@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Passenger } from '../../models/passenger.interface';
-
+import { PassengerDashboardModule } from "../../passenger-dashboard.module";
+import { PassengerDashboardService } from "../../passenger-dashboard.service";
 @Component({
     selector:'passenger-dashboard',
     styleUrls:['passenger-dashboard.component.scss'],
@@ -21,50 +22,34 @@ import { Passenger } from '../../models/passenger.interface';
 
 export class PassengerDashboardComponent implements OnInit {
     passengers: Passenger[];
-    constructor() {}
+    constructor(private passengerService: PassengerDashboardService) {}
+
     ngOnInit() {
-        this.passengers =[
-            {
-              id:1,
-              fullname: 'Langston Highland-Perara',
-              checkedIn: true,
-              checkInDate: null,
-              children: null
-            },
-            {
-              id:2,
-              fullname: 'Theodore Highland-Perara',
-              checkedIn: false,
-              checkInDate: null,
-              children: null
-              },
-            {
-              id:3,
-              fullname: 'Frank Lunde',
-              checkedIn: false,
-              checkInDate: null,
-              children: null
-            },
-            {
-              id:4,
-              fullname: 'Edgar Lunde',
-              checkedIn: true,
-              checkInDate: null,
-              children: null
-            },
-            {
-              id:5,
-              fullname: 'Henry Lunde',
-              checkedIn: true,
-              checkInDate: null,
-              children: null
-            },
-        ]
+      this.passengerService
+        .getPassengers()
+        .subscribe((data: Passenger[]) => this.passengers = data);
     }
-    handleEdit(event){
-        console.log(event)
+
+    handleEdit(event: Passenger) {
+      this.passengerService
+        .updatePassenger(event)
+        .subscribe((data: Passenger) =>{
+          this.passengers = this.passengers.map((passenger: Passenger) => {
+            if (passenger.id === event.id) {
+              passenger = Object.assign({}, passenger, event);
+            }
+            return passenger;
+          })
+        })
     }
-    handleRemove(event) {
-        console.log(event)
+
+    handleRemove(event: Passenger) {
+      this.passengerService
+        .removePassenger(event)
+        .subscribe((data: Passenger) => {
+          this.passengers = this.passengers.filter((passenger: Passenger) => {
+            return passenger.id !== event.id
+          })
+        })      
     }
 }
