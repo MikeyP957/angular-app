@@ -24,7 +24,7 @@ import { Passenger } from "../../models/passenger.interface";
                 {{detail.fullname}}
             </div>
             <div>           
-                Children: {{ detail.children?.length || 0}}
+                baggage: {{ detail.baggage?.length || ""}}
             </div>
             <button (click)="toggleEdit()" >
                 {{editing ? 'Done' : 'Edit'}}
