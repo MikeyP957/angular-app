@@ -1,39 +1,39 @@
 {
   "passengers": [
     {
+      "fullname": "Mikey Perara",
       "id": 1,
-      "fullname": "Pedro Sanchez",
       "checkedIn": true,
-      "checkInDate": null,
-      "children": null
+      "baggage": "hold-only",
+      "checkInDate": 1646955284707
     },
     {
       "id": 2,
       "fullname": "Theodore Highland-Perara",
       "checkedIn": false,
       "checkInDate": null,
-      "children": null
+      "baggage": "none"
     },
     {
       "id": 3,
       "fullname": "Frank Lunde",
       "checkedIn": false,
       "checkInDate": null,
-      "children": null
+      "baggage": "none"
     },
     {
       "id": 4,
       "fullname": "Edgar Lunde",
       "checkedIn": true,
       "checkInDate": null,
-      "children": null
+      "baggage": "none"
     },
     {
       "id": 5,
       "fullname": "Henry Lunde",
       "checkedIn": true,
       "checkInDate": null,
-      "children": null
+      "baggage": "none"
     }
   ]
 }
